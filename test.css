@@ -1,0 +1,77 @@
+:root {
+  --width-buttons : '25px';
+}
+
+.editor {
+  border: 1px solid rgba(10, 10, 10, 0.1);
+  box-sizing: border-box;
+  padding: 0;
+  margin: aut0;
+}
+
+.editor-content {
+  box-sizing: border-box;
+  height: 300px;
+  outline: 0;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.editor-toolbar {
+  background-color: #FFF;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+  width: 100%;
+}
+
+.editor-button {
+  padding: 0;
+  background-color: transparent;
+  border-style: solid;
+  border-color: lightgrey;
+  border-width: 0;
+  cursor: pointer;
+  height: 35px;
+  outline: 0;
+  width: var(--number-buttons);
+  vertical-align: center;
+  text-align:center;
+  text-align-last:center;
+}
+
+.editor-button:active {
+  color: lightgrey;
+}
+
+.button-selected {
+  background-color: #F0F0F0;
+}
+
+.editor-toolbar select:-moz-focusring {
+  color: transparent;
+  /*text-shadow: 0 0 0 #000;*/
+}
+
+.editor-toolbar select {
+  border-radius: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+ /* background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA0LjkgMTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQuOSAxMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiM0NDQ0NDQ7fQo8L3N0eWxlPgo8dGl0bGU+YXJyb3dzPC90aXRsZT4KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxLjQsNC43IDIuNSwzLjIgMy41LDQuNyAiLz4KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIzLjUsNS4zIDIuNSw2LjggMS40LDUuMyAiLz4KPC9zdmc+Cg==) no-repeat 100%;*/
+  -ms-word-break: normal;
+  word-break: normal;
+  text-align: center;
+  text-align-last:center;
+}
+
+.resize {
+  resize: both;
+  overflow: auto;
+  width: 100px;
+}
+
+.resize img {
+  width: 100%;
+  height: 100%;
+}
+
