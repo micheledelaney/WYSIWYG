@@ -1,5 +1,5 @@
 /*******************************************************************/
-/* Light-weight, simple WYSISYG text editor written in JS (ES6)    */
+/* Light-weight, simple WYSIWYG text editor written in JS (ES6)    */
 /* No dependencies, no libraries - just vanilla JS                 */
 /* Only 0.856KB                                                    */
 /* Michèle Delaney                                                 */
@@ -26,6 +26,7 @@ var exec = function exec(command) {
 class Editor {
     constructor(commands) {
         this.formatBlock = 'formatBlock';
+        this.defaultParagraphSeparator = '<p>';
         this.toolbar = this.createToolbar();
         this.textbox = this.createTextbox();
         /* map all the elements from array and create those buttons */
@@ -49,6 +50,21 @@ class Editor {
         content.classList.add('editor-content')
         content.id = 'textbox';
         document.getElementById('editor').appendChild(content);
+        content.oninput = (ref) => {
+            let firstChild = ref.target.firstChild;
+            if (firstChild && firstChild.nodeType === 3) {
+                exec('formatBlock', '<p>');
+            }
+        };
+        /*escape the blockquote/pre when 'enter' */
+        content.onkeydown = function (event) {
+            let format = queryCommandValue('formatBlock');
+            if (event.key === 'Enter' && (format === 'blockquote' || format === 'pre')) {
+                setTimeout(function () {
+                    return exec('formatBlock', '<p>');
+                } , 0 );
+            }
+        };
         return content;
     }
     createFormatButton(type, icon) {
@@ -159,6 +175,7 @@ class Editor {
         let label = createElement('label');
         label.innerHTML = '&#128247;';
         label.classList.add('editor-button');
+        label.id = 'image';
         label.setAttribute('for','insertImage');
 
         this.toolbar.appendChild(input);
@@ -174,7 +191,8 @@ class Editor {
         /* create select drowpdown */
         let select = createElement('select');
         select.classList.add('editor-button');
-        var sizes = [
+        select.id = 'fontsize';
+        let sizes = [
 			{
 				name: '8pt',
 				value: '1'
@@ -247,7 +265,7 @@ const callback = function(mutationsList, observer) {
 
 /* to get the file data from the input field as base64 */
 function getBase64(file) {
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
       return reader.result;
@@ -260,22 +278,22 @@ function getBase64(file) {
 function loadImageFileAsURL() {
     document.getElementById('textbox').focus();
     /* get the file that has been selected */
-    var filesSelected = document.getElementById('insertImage').files;
+    let filesSelected = document.getElementById('insertImage').files;
     if (filesSelected.length > 0) {
-        var fileToLoad = filesSelected[0];
+        let fileToLoad = filesSelected[0];
         
         if (fileToLoad.type.match('image.*')) {
             /* read the file into the filereader and get the data as base64 */
-            var fileReader = new FileReader();
+            let fileReader = new FileReader();
             fileReader.readAsDataURL(fileToLoad);
             fileReader.onload = function(fileLoadedEvent) {
                 /* create an img element and set its source to the base64 string */
-                var imageLoaded = document.createElement('img');
+                let imageLoaded = document.createElement('img');
                 imageLoaded.src = fileLoadedEvent.target.result;
                 /* create a div with the attribute 'resize' set to true so
                 that the image can get resized */
-                var ed = document.createElement('div');
-                var el = document.createElement('div');
+                let ed = document.createElement('div');
+                let el = document.createElement('div');
                 el.className = "resize";
                 imageLoaded.style.maxWidth = '100%';
                 el.style.width = '100px';

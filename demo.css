@@ -1,0 +1,8 @@
+#bold, #justifyleft, #outdent, #insertOrderedList, #blockquote, #insertHorizontalRule, #fontsize {
+    border-width: 0 0 0 1px;
+}
+
+#editor {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 200;
+}
